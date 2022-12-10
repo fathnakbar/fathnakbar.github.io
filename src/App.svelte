@@ -2,7 +2,7 @@
   import Header from "./lib/Header.svelte";
   import Cover from "./lib/Cover.svelte";
 
-  const colors = ["#63ADF2", '#F2E463', "#66F263", "#D282A6"];
+  const colors = ["#63ADF2", '#F2E463', "#66F263", "#63ADF2","#D282A6"];
   let theme = "";
 
   const setTheme = (color) => {
@@ -13,7 +13,7 @@
     <Header {...{colors, setTheme}}></Header>
     <div id="content-body">
         <div class="conntainer">
-          <Cover src="./public/profile.jpg" />
+          <Cover src="./public/profile.jpg" desc="Things won't happened by it self" color={theme}/>
         </div>
     </div>
     <div id="content-footer"></div>
@@ -34,10 +34,6 @@
     flex-grow: 1;
     align-items: center;
     justify-content: center;
-  }
-
-  .container {
-    
   }
 
 </style>

@@ -9,7 +9,6 @@
         {title: "Profile"},
         {title: "The Story"},
         {title: "Achivements"},
-        {title: "Projects"},
         {title: "Articles"},
         {title: "FAQ"},
     ];
