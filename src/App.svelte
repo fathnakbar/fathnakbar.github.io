@@ -21,7 +21,7 @@
 
 <style>
   #app-container {
-    padding: 20px;
+    padding: 10px;
     height: 100%;
     box-sizing: border-box;
     display: flex;
