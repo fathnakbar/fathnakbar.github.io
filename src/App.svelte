@@ -9,16 +9,24 @@
   const colors = ["#63ADF2", '#F2E463', "#66F263", "#63ADF2","#D282A6"];
   const theme = writable();
   setContext('theme', theme);
-  const setTheme = (color) => {
-    theme.set(color)
+  const setTheme = (page) => {
+    theme.set(page)
   }
 </script>
   <div id="app-container">
     <Header {...{colors, setTheme}}></Header>
     <div id="content-body">
       <Container>
-        <Page direction="row">
+
+        <Page direction="row" id="Profile">
           <Cover src="./profile.jpg" desc="Being genius is not enough, you need to be stupid to learn something new"/> 
+          <div>
+            <h2>Muhammad Fathan Akbar</h2>
+          </div>
+        </Page>
+
+        <Page direction="row" id="The Story">
+          <Cover src="./profile.jpg" desc="You need to go in a different road"/> 
           <div>
             <h2>Muhammad Fathan Akbar</h2>
           </div>

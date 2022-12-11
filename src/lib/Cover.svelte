@@ -4,7 +4,7 @@
 
   export let desc = undefined;
   let theme = getContext('theme');
-  let color = "white";
+  $: color = $theme.color;
   let _desc = "<br></br>"
   export let src;
   let node;
@@ -16,12 +16,13 @@
         let font = 18;
         let minSize = 12;
 
+        
         await tick();
-
+        
         while (height < node.clientHeight && font > minSize) {
             node.style.fontSize = `${--font}px`
         }
-        console.log(node.style.fontSize, height, node.clientHeight)
+        console.log(height, node.clientHeight)
     }
 
     onMount(() => {
@@ -31,10 +32,10 @@
 
 <div style:background-image={`url(${src})`} class="picture">
     {#if desc}
-        <div bind:this={node}  class="desc" style:color={$theme}>
+        <div bind:this={node}  class="desc" style:color={color}>
             {@html _desc}
-            <div class="hl" style:background-color={$theme}></div>
-            <div class="neon" style:box-shadow={`${$theme} 0px 0px 7px 3px`}></div>
+            <div class="hl" style:background-color={color}></div>
+            <div class="neon" style:box-shadow={`${color} 0px 0px 7px 3px`}></div>
         </div>
     {/if}
 </div>

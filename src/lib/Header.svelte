@@ -15,7 +15,10 @@
 
     let active = nav[0].title;
 
-    $: setTheme(nav.filter(val => val.title == active)[0].color);
+    $: {
+        let act = nav.filter(val => val.title == active)[0];
+        setTheme(act)
+    };
 
     $: check = (item) => {
         return item.title == active ? item.color : ""
