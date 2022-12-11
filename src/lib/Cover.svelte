@@ -1,27 +1,40 @@
 <script>
-    export let src;
-    export let desc = undefined;
-    export let color = "white";
-    let _desc = "<br></br>"
+  import { getContext, onMount, tick } from "svelte";
 
-    function fit(node){
+
+  export let desc = undefined;
+  let theme = getContext('theme');
+  let color = "white";
+  let _desc = "<br></br>"
+  export let src;
+  let node;
+
+    async function fit(){
+        
         const height = node.clientHeight
         _desc = `"${desc}"`;
         let font = 18;
-        let minSize = 11;
+        let minSize = 12;
+
+        await tick();
 
         while (height < node.clientHeight && font > minSize) {
             node.style.fontSize = `${--font}px`
         }
+        console.log(node.style.fontSize, height, node.clientHeight)
     }
+
+    onMount(() => {
+        fit();
+    })
 </script>
 
 <div style:background-image={`url(${src})`} class="picture">
     {#if desc}
-        <div use:fit class="desc" style:color={color}>
+        <div bind:this={node}  class="desc" style:color={$theme}>
             {@html _desc}
-            <div class="hl" style:background-color={color}></div>
-            <div class="neon" style:box-shadow={`${color} 0px 0px 7px 3px`}></div>
+            <div class="hl" style:background-color={$theme}></div>
+            <div class="neon" style:box-shadow={`${$theme} 0px 0px 7px 3px`}></div>
         </div>
     {/if}
 </div>
@@ -36,6 +49,8 @@
         height: 300px;
         width: 200px;
         position: relative;
+        margin: 10px;
+        margin-right: 55px;
     }
 
     .desc {
