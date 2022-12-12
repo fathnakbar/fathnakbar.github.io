@@ -10,11 +10,15 @@
             _childs.forEach(el => {
                 el.style.zIndex = "1"
                 el.style.position = ""
+                el.style.visibility = "visible"
+
             });
+
             let act = _childs.filter(el => !(el.getAttribute('page-id') == $theme.title))
             if (act.length > 0) {
                 act[0].style.zIndex = "-99"
                 act[0].style.position = "absolute"
+                act[0].style.visibility = "hidden"
             }
 
             }

@@ -1,7 +1,10 @@
 <script>
 // @ts-nocheck
 
+// Check the id with and use if statement to mount the div content not page-id
+
   import { onMount, getContext } from "svelte";
+  import { fade } from "svelte/transition";
   import Color from "../helper/hextorgb";
 
     let content;
@@ -12,7 +15,7 @@
         if (content) {
             const titles = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
             Array.from(titles).forEach(val => {
-                val.style.backgroundImage = `linear-gradient(${$theme.color}, #161616)`
+                val.style.backgroundImage = `linear-gradient(${$theme.color}, ${Color($theme.color).a(.3)})`
             })
         }
     }
