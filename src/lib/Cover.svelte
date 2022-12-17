@@ -1,9 +1,10 @@
 <script>
   import { getContext, onMount, tick } from "svelte";
+  import symbols from "../helper/symbols";
 
 
   export let desc = undefined;
-  let theme = getContext('theme');
+  let theme = getContext(symbols.router);
   $: color = $theme.color;
   let _desc = "<br></br>"
   export let src;

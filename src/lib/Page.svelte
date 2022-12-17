@@ -3,27 +3,33 @@
 
 // Check the id with and use if statement to mount the div content not page-id
 
-  import { onMount, getContext } from "svelte";
-  import { fade } from "svelte/transition";
-  import Color from "../helper/hextorgb";
+    import { getContext } from "svelte";
+    import { fly, slide, scale, draw, crossfade, fade } from "svelte/transition";
+    import symbols from "../helper/symbols";
+    import Color from "../helper/hextorgb";
 
     let content;
-    let theme = getContext('theme');
     export let direction = "row";
-    export let id;
+    export let route;
+
+    let nav = getContext(symbols.router);
+    
+
     $: {
         if (content) {
-            const titles = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            const titles = content.querySelectorAll('h1, h2, h3');
             Array.from(titles).forEach(val => {
-                val.style.backgroundImage = `linear-gradient(${$theme.color}, ${Color($theme.color).a(.3)})`
+                val.style.backgroundImage = `linear-gradient(${$nav.color}, ${Color($nav.color).a(.3)})`
             })
         }
     }
 </script>
 
-<div bind:this={content} style:flex-direction={direction} page-id={id}>
+{#if route == $nav.route}
+<div bind:this={content} style:flex-direction={direction} in:fade>
     <slot></slot>
 </div>
+{/if}
 
 <style>
     div {
@@ -31,7 +37,8 @@
         display: flex;
     }
 
-    :global(h1, h2, h3, h4, h5, h6) {
+    :global(h1, h2, h3) {
+        margin: 5px 0;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
